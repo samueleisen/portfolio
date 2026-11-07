@@ -8,31 +8,31 @@ go.onclick=async()=>{
   if(busy)return;busy=true;go.disabled=true;go.style.opacity=.6;
   const bug=$('#bug').checked,next=(ver+0.1).toFixed(1);
   lis.forEach(l=>l.className='');log.innerHTML='';
-  rel.textContent=`release v${next} · planting`;
+  rel.textContent=`release v${next} · deploying`;
   setStage(0);
   const msgs=[
-    ['commit a1f3c9e pushed. Lint, format and secret scan pass.'],
-    ['image built from cache in 41s. Signed and pushed to registry.'],
-    bug?['test <u>checkout_total</u> failed. A bug sneaked in.']:['212 tests pass. 0 critical vulnerabilities.'],
-    ['canary 5% healthy → 25% → 100%. Release is live.'],
-    ['customers pay a visit. Traffic hums at 200 OK, p95 28ms.']
+    ['commit pushed. TypeScript strict check & 28 Jest suites (92.3%) pass.'],
+    ['multi-stage <100MB image built & authenticated via GCP Workload Identity.'],
+    bug?['probe <u>GET /health</u> failed SLA (>500ms) · SQLSTATE 23P01 handler regression.']:['staging healthy. Gatus probe verified GET /health in 6ms.'],
+    ['Cloud Run traffic shifted to v'+next+' (minScale=0, maxScale=3 FinOps cap).'],
+    ['Prometheus scraping metrics; Gatus watching SLAs (200 OK, p95 14ms).']
   ];
   for(let i=0;i<5;i++){
     lis[i].classList.add('on');await wait(500);
     if(i===2&&bug){
       lis[i].className='fail';say('✕ '+msgs[i][0],'bad');
       art.classList.add('wilt');await wait(1100);
-      say('↺ gate closed. Nothing reached users. Rolling back…','bad');
+      say('↺ promotion gate halted. Keeping 100% traffic on previous healthy revision…','bad');
       await wait(900);art.className='stage-art s5';
       lis.forEach(l=>l.className='done');
-      say(`<b>safe</b> v${ver.toFixed(1)} is still blooming. Fix the bug and try again.`);
-      rel.textContent=`release v${ver.toFixed(1)} · blooming (v${next} rolled back)`;
+      say(`<b>safe</b> v${ver.toFixed(1)} remains live (<5s rollback). Zero user impact.`);
+      rel.textContent=`release v${ver.toFixed(1)} · serving healthy traffic (v${next} halted)`;
       busy=false;go.disabled=false;go.style.opacity=1;return;
     }
     setStage(i+1);await wait(700);
     lis[i].className='done';say(`<b>✓ ${['seed','sprout','sapling','bloom','pollinate'][i]}</b> ${msgs[i][0]}`);
   }
-  ver=+next;rel.textContent=`release v${ver.toFixed(1)} · blooming`;
+  ver=+next;rel.textContent=`release v${ver.toFixed(1)} · serving healthy traffic`;
   busy=false;go.disabled=false;go.style.opacity=1;
 };
 /* lens toggle */
@@ -187,11 +187,11 @@ const builders=[
   }
 ];
 const bmsgs=[
-  'Tables, constraints and indexes set. Migration 0001 applied. Everything else hangs off this.',
-  'Orders, users and billing modelled. Rules live in one place, not in routes.',
-  'Typed REST and GraphQL endpoints, JWT auth, validation and rate limits. This is where the roots meet the trunk and everything passes up to the frontend.',
-  'Job queue online. Emails, webhooks and exports spread out underground, off the request path.',
-  'Redis cache, read replica, tracing and circuit breakers. Fine roots everywhere.'
+  'PostgreSQL 16 schema applied with tstzrange & btree_gist exclusion constraints.',
+  'Storage-level GiST lock active: overlapping bookings raise SQLSTATE 23P01 atomically.',
+  'Node.js 22 & TypeScript REST routes online with JWT auth and 409 Conflict translation.',
+  'Cloud Scheduler cron workers and outbound Cloudflare Zero Trust tunnels connected.',
+  'Prometheus histograms, ~1ms /health probe, and 10s SIGTERM pool draining active.'
 ];
 const names=['taproot','main roots','root crown','lateral roots','root hairs'];
 const bsay=(t,c)=>{slog.insertAdjacentHTML('beforeend',`<div class="${c||''}">${t}</div>`);slog.scrollTop=slog.scrollHeight};
@@ -209,31 +209,33 @@ async function growRoots(){
   const slow=$('#slow').checked;
   clearRoots();
   bl.forEach(l=>l.className='');slog.innerHTML='';
-  srel.textContent='backend · planting';
+  srel.textContent='backend · initializing';
   for(let i=0;i<5;i++){
     bl[i].classList.add('on');await wait(350);
     builders[i]();reveal();
     await wait(i===4?1800:1300);
     if(i===2&&slow){
       bl[i].className='fail';
-      bsay('✕ <u>GET /orders</u> runs an unindexed query. Pool exhausted, p99 4.2s.','bad');
+      bsay('✕ <u>GET /api/resources/:id/availability</u> full table scan without GiST index. Pool saturated, p99 3.8s.','bad');
       all.filter(b=>b.stage<=2).forEach(b=>{b.el.classList.add('strain');b.el.setAttribute('stroke-width',(b.w*.45).toFixed(1))});
       await wait(1700);
-      bsay('↺ added composite index, query timeout and pool limit. Roots relax…','bad');
+      bsay('↺ applied partial GiST index (WHERE status = CONFIRMED) & pool timeout. Roots recover…','bad');
       await wait(900);
       all.filter(b=>b.stage<=2).forEach(b=>{b.el.classList.remove('strain');b.el.setAttribute('stroke-width',b.w)});
       await wait(700);
-      bsay('<b>fixed</b> p99 down to 38ms. Growth continues.');
+      bsay('<b>fixed</b> range intersection query down to ~1ms. Growth continues.');
     }
     bl[i].className='done';bsay(`<b>✓ ${names[i]}</b> ${bmsgs[i]}`);
   }
-  srel.textContent='backend · rooted and resilient';
+  srel.textContent='backend · rooted & race-free';
   rooting=false;gbtn.disabled=false;gbtn.style.opacity=1;
 }
 gbtn.onclick=growRoots;
 showGrown();
 document.querySelectorAll('.bed .t').forEach(b=>b.onclick=()=>{
-  const o=b.parentElement.classList.toggle('open');b.textContent=o?'Show less':'Read more'});
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+  const bed=b.closest('.bed');
+  const o=bed.classList.toggle('open');
+  b.textContent=o?'Hide notes':'Architecture notes';
+});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
-

@@ -3,174 +3,375 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Greenhouse — DevOps & Deployment Portfolio</title>
-<meta name="description" content="Portfolio of a DevOps engineer who grows reliable infrastructure, calmly.">
+<title>Samuel Eisen — Cloud, DevOps &amp; Backend Engineering</title>
+<meta name="description" content="Portfolio of Samuel Eisen — Cloud, DevOps, and Backend engineer building calm, observable, cost-governed infrastructure and high-concurrency APIs.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<nav><div class="wrap"><b>The Greenhouse</b>
-<ul><li><a href="#plot">Try a release</a></li><li><a href="#beds">Work</a></li><li><a href="#shed">Toolshed</a></li><li><a href="#seasons">Seasons</a></li><li><a href="#contact">Say hello</a></li></ul></div></nav>
+<nav>
+  <div class="wrap">
+    <a href="#" class="brand"><b>Samuel Eisen</b><span class="brand-sub">The Greenhouse</span></a>
+    <ul>
+      <li><a href="#beds">Selected Work</a></li>
+      <li><a href="#plot">System Simulator</a></li>
+      <li><a href="#shed">Stack</a></li>
+      <li><a href="#seasons">Focus</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
 
 <header class="hero">
-  <div class="sun"></div><div class="cloud c1"></div><div class="cloud c2"></div>
+  <div class="sun" aria-hidden="true"></div>
+  <div class="cloud c1" aria-hidden="true"></div>
+  <div class="cloud c2" aria-hidden="true"></div>
   <div class="wrap">
-    <span class="eyebrow">Alex Rivera · DevOps &amp; Platform Engineer</span>
+    <div class="eyebrow-row">
+      <span class="status-pill"><i class="dot"></i> Production systems online</span>
+      <span class="eyebrow">Samuel Eisen · DevOps, Cloud &amp; Backend Engineer</span>
+    </div>
     <h1>I grow software that <em>ships</em> without a fuss.</h1>
-    <p class="lead">Deployments should feel like a quiet morning in a greenhouse: steady, watered, and unsurprising. I build the pipelines, clusters and habits that make releases boring, in the best way.</p>
-    <a class="btn" href="#plot">Plant a release</a><a class="btn ghost" href="#beds">See the garden</a>
+    <p class="lead">Deployments should feel like a quiet morning in a greenhouse: steady, observable, and unsurprising. I engineer keyless CI/CD pipelines, FinOps-governed cloud infrastructure, and concurrency-safe backends that make production boring—in the best way.</p>
+    <div class="hero-actions">
+      <a class="btn" href="#beds">Explore deployed systems</a>
+      <a class="btn ghost" href="https://cloud.samueleisen.com/" target="_blank" rel="noopener">Live Cloud App ↗</a>
+      <a class="btn ghost" href="https://github.com/samueleisen" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
     <div class="facts">
-      <div><strong>140+</strong>deploys a week</div>
-      <div><strong>99.97%</strong>uptime tended</div>
-      <div><strong>9 min</strong>commit to production</div>
+      <div><strong>~$6/mo</strong>GCP production footprint<small>scale-to-zero + FinOps guardrails</small></div>
+      <div><strong>0 races</strong>DB-enforced concurrency<small>PostgreSQL GiST exclusion locks</small></div>
+      <div><strong>&lt;5 sec</strong>traffic rollback window<small>keyless Workload Identity GitOps</small></div>
+      <div><strong>0 ports</strong>exposed on host network<small>Cloudflare Zero Trust + Gatus SRE</small></div>
     </div>
   </div>
-  <svg class="hills" viewBox="0 0 1440 170" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0 90C200 20 380 30 560 80s420 60 560-10 220-30 320 0v110H0z" fill="#c2daf0"/>
-    <path d="M0 130C240 80 420 90 640 125s460 20 800-40v85H0z" fill="#a6c8e3"/>
-    <path d="M0 160C300 130 600 150 900 150s360-20 540-30v50H0z" fill="#cfdfed"/>
+  <svg class="hills" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 75C220 25 400 35 580 72s400 48 560-8 200-24 300 4v72H0z" fill="#c7ddef"/>
+    <path d="M0 105C250 68 430 78 650 102s450 16 790-30v68H0z" fill="#b0cce6"/>
+    <path d="M0 128C310 108 610 122 910 122s350-14 530-22v40H0z" fill="#d5e4f2"/>
   </svg>
 </header>
 
-<section id="plot"><div class="wrap">
-  <span class="eyebrow">Interactive</span>
-  <h2>The plot: try a release</h2>
-  <p class="lead">This is how I think about a pipeline. Each commit is a seed. Plant one and watch it grow. Or slip in a bug and see how a safe rollout protects the garden.</p>
-  <div class="lens" role="tablist" aria-label="Choose a view">
-    <button role="tab" class="on" id="lens-sun" aria-selected="true">☀ Sunlight <small>DevOps &amp; delivery</small></button>
-    <button role="tab" id="lens-soil" aria-selected="false">❖ Soil <small>full-stack architecture</small></button>
-  </div>
-  <div id="pane-sun">
-  <div class="plot reveal">
-    <div class="card">
-      <div class="release" id="rel">release v1.0 · blooming</div>
-      <div class="stage-art s5" id="art">
-        <svg id="plant" width="180" height="200" viewBox="0 0 180 200" aria-label="A plant that grows as the pipeline progresses">
-          <defs><clipPath id="bclip"><circle cx="104" cy="47" r="7.5"/></clipPath></defs>
-          <ellipse id="seed" cx="90" cy="196" rx="7" ry="5" fill="#8a6a50"/>
-          <path id="stem" d="M90 198 C88 150 94 110 90 62" stroke="#6f8f6c" stroke-width="5" fill="none" stroke-linecap="round"/>
-          <path id="leafL" d="M89 140 C60 140 45 120 42 104 C66 104 84 116 89 140z" fill="#a8bfa4"/>
-          <path id="leafR" d="M91 120 C120 120 136 100 140 84 C114 84 96 98 91 120z" fill="#8fb08b"/>
-          <g id="petals" fill="#e6b9b0"><circle cx="90" cy="40" r="15"/><circle cx="72" cy="52" r="15"/><circle cx="108" cy="52" r="15"/><circle cx="78" cy="68" r="14"/><circle cx="102" cy="68" r="14"/></g>
-          <circle id="bud" cx="90" cy="55" r="11" fill="#f1deaa"/>
-          <g id="bee">
-            <circle cx="104" cy="47" r="7.5" fill="#1a2938"/>
-            <path d="M101.5 38 L106.5 56" stroke="#f3c846" stroke-width="5.2" clip-path="url(#bclip)"/>
-          </g>
-        </svg>
-      </div>
-      <div class="controls">
-        <button class="btn" id="go">Plant a release</button>
-        <label><input type="checkbox" id="bug"> Slip in a bug</label>
-      </div>
-      <div class="log" id="log" aria-live="polite"><b>ready</b> v1.0 is live. Waiting for a new seed…</div>
+<section id="beds">
+  <div class="wrap">
+    <span class="eyebrow">Selected Work · Verifiable Production &amp; Source</span>
+    <h2>Cultivated systems</h2>
+    <p class="lead">Three interconnected systems covering serverless cloud governance, closed-loop SRE observability, and storage-level backend concurrency.</p>
+
+    <div class="beds">
+      <!-- Featured Project 1: cloud.samueleisen.com -->
+      <article class="bed featured reveal">
+        <div class="bed-main">
+          <div class="bed-head">
+            <span class="tag">GCP Cloud Run · FinOps · Keyless GitOps</span>
+            <span class="badge live"><i class="dot"></i> Live Production</span>
+          </div>
+          <h3>TaskBoard Cloud</h3>
+          <p class="bed-url"><a href="https://cloud.samueleisen.com/" target="_blank" rel="noopener">cloud.samueleisen.com ↗</a></p>
+          <p>A production team task &amp; cloud status tracker engineered on Google Cloud Platform with strict FinOps cost governance, keyless Workload Identity Federation delivery, and an integrated real-time SRE &amp; FinOps inspector.</p>
+
+          <div class="metric">
+            <span><b>~$6/mo</b>total cloud budget</span>
+            <span><b>&lt;10ms</b>/health SLA probe</span>
+            <span><b>&lt;5s</b>1-command rollback</span>
+            <span><b>0 keys</b>long-lived JSON secrets</span>
+          </div>
+
+          <div class="chips">
+            <span>GCP Cloud Run</span>
+            <span>Cloud SQL (PostgreSQL)</span>
+            <span>Workload Identity</span>
+            <span>Cloud Scheduler</span>
+            <span>TypeScript</span>
+            <span>React 18</span>
+          </div>
+
+          <div class="more">
+            <div class="arch-note">
+              <h4>Architectural &amp; FinOps Decisions</h4>
+              <ul>
+                <li><strong>Direct Ingress Termination:</strong> Uses native Cloud Run domain mapping instead of an External Application Load Balancer, eliminating ~$18.25/mo in idle forwarding-rule charges.</li>
+                <li><strong>Scale-to-Zero with Hard Ceiling:</strong> Configured with <code>minScale = 0</code> for zero idle overnight cost and <code>maxScale = 3</code> + pinned <code>db-f1-micro</code> Cloud SQL to prevent billing runaway under traffic spikes.</li>
+                <li><strong>Observability Hygiene:</strong> 14-day Cloud Logging retention bucket with sink-level exclusion for noisy <code>GET /health</code> probes, paired with 3-tier GCP Billing alerts ($5 / $10 / $20).</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bed-actions">
+            <a class="btn small" href="https://cloud.samueleisen.com/" target="_blank" rel="noopener">Launch Live App ↗</a>
+            <a class="btn ghost small" href="https://github.com/samueleisen/TaskBoard-cloud" target="_blank" rel="noopener">GitHub Repo ↗</a>
+            <button class="t" type="button">Architecture notes</button>
+          </div>
+        </div>
+
+        <aside class="bed-diagram" aria-label="TaskBoard Cloud topology summary">
+          <div class="diag-title">System Topology · GCP Serverless</div>
+          <div class="diag-flow">
+            <div class="diag-node">
+              <span class="diag-k">Ingress</span>
+              <strong>Native Domain Mapping</strong>
+              <small>HTTPS · $0 load balancer overhead</small>
+            </div>
+            <div class="diag-arrow">↓</div>
+            <div class="diag-node active">
+              <span class="diag-k">Compute</span>
+              <strong>Cloud Run Service (:8080)</strong>
+              <small>Multi-stage &lt;100MB image · scale 0→3</small>
+            </div>
+            <div class="diag-split">
+              <div class="diag-node">
+                <span class="diag-k">Storage</span>
+                <strong>Cloud SQL Postgres</strong>
+                <small>db-f1-micro · Secret Manager</small>
+              </div>
+              <div class="diag-node">
+                <span class="diag-k">Automation</span>
+                <strong>Cloud Scheduler</strong>
+                <small>15m cron worker · 14d logs</small>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </article>
+
+      <!-- Project 2: DevOps1-26 -->
+      <article class="bed reveal">
+        <div class="bed-head">
+          <span class="tag">SRE · Observability · Zero-Trust</span>
+          <span class="badge repo">DevOps1-26</span>
+        </div>
+        <h3>Living Infra &amp; Closed-Loop SRE</h3>
+        <p class="bed-url"><a href="https://github.com/samueleisen/DevOps1-26" target="_blank" rel="noopener">github.com/samueleisen/DevOps1-26 ↗</a></p>
+        <p>Self-hosted observability and automated incident lifecycle stack uniting Gatus SLA probing, Prometheus TSDB, Grafana provisioning, and outbound-only Cloudflare Zero Trust tunnels.</p>
+
+        <div class="metric">
+          <span><b>0</b>inbound open ports</span>
+          <span><b>30s</b>SLA probe interval</span>
+          <span><b>Auto</b>GitHub Issue lifecycle</span>
+        </div>
+
+        <div class="chips">
+          <span>Gatus</span>
+          <span>Prometheus</span>
+          <span>Grafana</span>
+          <span>Node Exporter</span>
+          <span>Cloudflare Tunnel</span>
+          <span>GitHub Actions</span>
+        </div>
+
+        <div class="more">
+          <div class="arch-note">
+            <h4>Closed-Loop Incident Automation</h4>
+            <ul>
+              <li><strong>Zero-Trust Exposure:</strong> Services bind strictly to <code>127.0.0.1</code>; public status and telemetry dashboards route exclusively through outbound <code>cloudflared</code> tunnels.</li>
+              <li><strong>Self-Healing Issue Tracking:</strong> After 3 consecutive failed probes (~90s), Gatus triggers a GitHub <code>repository_dispatch</code> webhook that deduplicates and opens a labeled <code>[Incident]</code> issue—then automatically comments and closes it upon recovery.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bed-actions">
+          <a class="btn ghost small" href="https://github.com/samueleisen/DevOps1-26" target="_blank" rel="noopener">Inspect Repository ↗</a>
+          <button class="t" type="button">Architecture notes</button>
+        </div>
+      </article>
+
+      <!-- Project 3: backend-26 -->
+      <article class="bed reveal">
+        <div class="bed-head">
+          <span class="tag">Backend API · Concurrency · Telemetry</span>
+          <span class="badge repo">backend-26</span>
+        </div>
+        <h3>ResourceFlow Booking Engine</h3>
+        <p class="bed-url"><a href="https://github.com/samueleisen/backend-26" target="_blank" rel="noopener">github.com/samueleisen/backend-26 ↗</a></p>
+        <p>High-concurrency room and equipment reservation API engineered to guarantee zero double-booking race conditions at the storage layer using PostgreSQL GiST range exclusion locks.</p>
+
+        <div class="metric">
+          <span><b>92.3%</b>Jest test coverage</span>
+          <span><b>~1ms</b>DB pool SLA probe</span>
+          <span><b>23P01</b>atomic conflict lock</span>
+        </div>
+
+        <div class="chips">
+          <span>TypeScript 5.6</span>
+          <span>Node.js 22</span>
+          <span>PostgreSQL 16 (GiST)</span>
+          <span>Prometheus</span>
+          <span>Docker Compose</span>
+          <span>Jest</span>
+        </div>
+
+        <div class="more">
+          <div class="arch-note">
+            <h4>Storage-Level Concurrency &amp; SRE Contracts</h4>
+            <ul>
+              <li><strong>GiST Range Exclusion:</strong> Replaces fragile app-layer check-then-insert logic with <code>EXCLUDE USING gist (resource_id WITH =, during WITH &amp;&amp;) WHERE (status = 'CONFIRMED')</code>, translating <code>23P01</code> violations into deterministic <code>409 Conflict</code> responses.</li>
+              <li><strong>Production Telemetry:</strong> Exposes Prometheus route latency histograms (<code>http_request_duration_seconds</code>), custom conflict counters, and 10-second graceful <code>SIGTERM</code> connection draining.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bed-actions">
+          <a class="btn ghost small" href="https://github.com/samueleisen/backend-26" target="_blank" rel="noopener">Inspect Repository ↗</a>
+          <button class="t" type="button">Architecture notes</button>
+        </div>
+      </article>
     </div>
-    <div class="card"><ol class="steps" id="steps">
-      <li class="done"><i>1</i><div>Seed<small>commit pushed, hooks and lint pass</small></div></li>
-      <li class="done"><i>2</i><div>Sprout<small>immutable image built and signed</small></div></li>
-      <li class="done"><i>3</i><div>Sapling<small>tests and security scan in a clean room</small></div></li>
-      <li class="done"><i>4</i><div>Bloom<small>canary at 5%, then gradual rollout</small></div></li>
-      <li class="done"><i>5</i><div>Pollinate<small>customers pay a visit, live traffic and calm telemetry</small></div></li>
-    </ol></div>
   </div>
-  </div>
+</section>
 
-  <div id="pane-soil" hidden>
-  <div class="plot">
-    <div class="card">
-      <div class="release" id="srel">backend · rooted and resilient</div>
-      <div class="stage-art soil" id="soilart">
-        <svg id="rootsvg" viewBox="0 0 400 280" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" aria-label="A root system that grows as the backend is built">
-          <path d="M0 116 Q200 128 400 114" fill="none" stroke="#e3d9cb" stroke-width="1" opacity=".4"/>
-          <path d="M0 192 Q200 204 400 190" fill="none" stroke="#e3d9cb" stroke-width="1" opacity=".3"/>
-          <path d="M200 44 C200 28 200 14 200 0" stroke="#6f8f6c" stroke-width="5" fill="none" stroke-linecap="round"/>
-          <path d="M199 30 C183 28 173 19 171 10 C185 10 195 18 199 30z" fill="#a8bfa4"/>
-          <path d="M201 23 C217 21 227 12 229 3 C215 3 205 11 201 23z" fill="#8fb08b"/>
-          <g id="rg"></g>
-          <ellipse id="crown" class="crown" cx="200" cy="44" rx="8.5" ry="4" fill="#8a6a50"/>
-          <g id="db" class="db"><ellipse cx="200" cy="248" rx="16" ry="5"/><ellipse cx="200" cy="242" rx="16" ry="5"/><ellipse cx="200" cy="236" rx="16" ry="5"/></g>
-          <g id="nodes"></g>
-          <g id="labels"></g>
-        </svg>
-      </div>
-      <div class="controls">
-        <button class="btn" id="grow">Grow the backend</button>
-        <label><input type="checkbox" id="slow"> Slip in a slow query</label>
-      </div>
-      <div class="log" id="slog" aria-live="polite"><b>ready</b> Backend is live and rooted. Waiting for a new schema…</div>
+<section id="plot">
+  <div class="wrap">
+    <span class="eyebrow">Interactive Architecture Simulator</span>
+    <h2>How the garden runs</h2>
+    <p class="lead">Every commit is a seed; every schema is a root system. Step through how my delivery pipeline and backend storage engine handle both normal growth and production faults.</p>
+    <div class="lens" role="tablist" aria-label="Choose an architectural view">
+      <button role="tab" class="on" id="lens-sun" aria-selected="true">☀ Sunlight <small>CI/CD &amp; SRE delivery</small></button>
+      <button role="tab" id="lens-soil" aria-selected="false">❖ Soil <small>Backend &amp; GiST storage</small></button>
     </div>
-    <div class="card"><ol class="steps" id="bsteps">
-      <li><i>1</i><div>taproot<small>Tables, constraints and indexes set. Migration 0001 applied. Everything else hangs off this.</small></div></li>
-      <li><i>2</i><div>main roots<small>Orders, users and billing modelled. Rules live in one place, not in routes.</small></div></li>
-      <li><i>3</i><div>root crown<small>Typed REST and GraphQL endpoints, JWT auth, validation and rate limits. This is where the roots meet the trunk and everything passes up to the frontend.</small></div></li>
-      <li><i>4</i><div>lateral roots<small>Job queue online. Emails, webhooks and exports spread out underground, off the request path.</small></div></li>
-      <li><i>5</i><div>root hairs<small>Redis cache, read replica, tracing and circuit breakers. Fine roots everywhere.</small></div></li>
-    </ol></div>
-  </div>
-  </div>
-</div></section>
+    <div id="pane-sun">
+      <div class="plot reveal">
+        <div class="card">
+          <div class="release" id="rel">release v1.0 · serving healthy traffic</div>
+          <div class="stage-art s5" id="art">
+            <svg id="plant" width="180" height="200" viewBox="0 0 180 200" aria-label="A plant that grows as the deployment pipeline progresses">
+              <defs><clipPath id="bclip"><circle cx="104" cy="47" r="7.5"/></clipPath></defs>
+              <ellipse id="seed" cx="90" cy="196" rx="7" ry="5" fill="#8a6a50"/>
+              <path id="stem" d="M90 198 C88 150 94 110 90 62" stroke="#6f8f6c" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <path id="leafL" d="M89 140 C60 140 45 120 42 104 C66 104 84 116 89 140z" fill="#a8bfa4"/>
+              <path id="leafR" d="M91 120 C120 120 136 100 140 84 C114 84 96 98 91 120z" fill="#8fb08b"/>
+              <g id="petals" fill="#e6b9b0"><circle cx="90" cy="40" r="15"/><circle cx="72" cy="52" r="15"/><circle cx="108" cy="52" r="15"/><circle cx="78" cy="68" r="14"/><circle cx="102" cy="68" r="14"/></g>
+              <circle id="bud" cx="90" cy="55" r="11" fill="#f1deaa"/>
+              <g id="bee">
+                <circle cx="104" cy="47" r="7.5" fill="#1a2938"/>
+                <path d="M101.5 38 L106.5 56" stroke="#f3c846" stroke-width="5.2" clip-path="url(#bclip)"/>
+              </g>
+            </svg>
+          </div>
+          <div class="controls">
+            <button class="btn" id="go">Trigger deployment</button>
+            <label><input type="checkbox" id="bug"> Inject regression in stage 3</label>
+          </div>
+          <div class="log" id="log" aria-live="polite"><b>ready</b> v1.0 active on Cloud Run. Gatus SLA probes green (&lt;10ms).</div>
+        </div>
+        <div class="card">
+          <ol class="steps" id="steps">
+            <li class="done"><i>1</i><div>Seed · Commit &amp; Test Gate<small>TypeScript check, lint &amp; 28 Jest suites (92.3% coverage) pass</small></div></li>
+            <li class="done"><i>2</i><div>Sprout · Keyless Container Build<small>Multi-stage &lt;100MB image built via GCP Workload Identity</small></div></li>
+            <li class="done"><i>3</i><div>Sapling · Staging &amp; SLA Verification<small>Gatus probes GET /health (&lt;10ms) and active Postgres pool</small></div></li>
+            <li class="done"><i>4</i><div>Bloom · FinOps-Guarded Rollout<small>Cloud Run revision shifted (minScale=0, maxScale=3 cap)</small></div></li>
+            <li class="done"><i>5</i><div>Pollinate · Closed-Loop Telemetry<small>Prometheus scrapes metrics; Gatus watches for auto-issue dispatch</small></div></li>
+          </ol>
+        </div>
+      </div>
+    </div>
 
-<section id="beds"><div class="wrap">
-  <span class="eyebrow">Selected work</span>
-  <h2>Garden beds</h2>
-  <p class="lead">Four things I've planted and kept healthy. Swap in your own details, since these are placeholders.</p>
-  <div class="beds">
-    <article class="bed reveal"><span class="tag">Kubernetes · Platform</span><h3>The Quiet Cluster</h3>
-      <p>Moved 60 services from hand-tended VMs to a multi-region Kubernetes platform with golden-path templates for every team.</p>
-      <div class="metric"><span><b>−42%</b>cloud cost</span><span><b>3×</b>deploy frequency</span></div>
-      <div class="chips"><span>EKS</span><span>Helm</span><span>Argo CD</span><span>Karpenter</span></div>
-      <div class="more"><p style="margin-top:14px">Teams scaffold a service in ten minutes with ingress, dashboards and alerts already wired. Right-sizing and spot capacity paid for the migration in two quarters.</p></div>
-      <button class="t">Read more</button></article>
-    <article class="bed reveal"><span class="tag">CI/CD · Developer experience</span><h3>Nine-Minute Path</h3>
-      <p>Rebuilt a 50-minute pipeline into cached, parallel stages with progressive delivery and automatic rollback on bad signals.</p>
-      <div class="metric"><span><b>9 min</b>commit to prod</span><span><b>&lt;1%</b>change failure</span></div>
-      <div class="chips"><span>GitHub Actions</span><span>Argo Rollouts</span><span>Bazel cache</span></div>
-      <div class="more"><p style="margin-top:14px">Canary analysis reads error rate and latency from Prometheus and rolls back by itself. Engineers stopped scheduling releases around Fridays.</p></div>
-      <button class="t">Read more</button></article>
-    <article class="bed reveal"><span class="tag">Terraform · Infrastructure as code</span><h3>Everything In Git</h3>
-      <p>Codified a sprawling console-built estate into reviewed, versioned modules with drift detection and policy checks.</p>
-      <div class="metric"><span><b>100%</b>reproducible</span><span><b>4 hrs</b>to rebuild a region</span></div>
-      <div class="chips"><span>Terraform</span><span>OPA</span><span>Atlantis</span><span>AWS</span></div>
-      <div class="more"><p style="margin-top:14px">Disaster recovery went from a binder nobody trusted to a rehearsed quarterly drill. Drift alerts land in chat before anyone notices.</p></div>
-      <button class="t">Read more</button></article>
-    <article class="bed reveal"><span class="tag">Observability · Reliability</span><h3>The Weather Station</h3>
-      <p>Built SLO-driven monitoring and calm on-call: fewer, better alerts, runbooks beside every page, blameless reviews.</p>
-      <div class="metric"><span><b>−70%</b>alert noise</span><span><b>12 min</b>median recovery</span></div>
-      <div class="chips"><span>Prometheus</span><span>Grafana</span><span>OpenTelemetry</span><span>Loki</span></div>
-      <div class="more"><p style="margin-top:14px">Alerts fire on user pain, not CPU. Night pages dropped enough that on-call became a role people volunteer for.</p></div>
-      <button class="t">Read more</button></article>
+    <div id="pane-soil" hidden>
+      <div class="plot">
+        <div class="card">
+          <div class="release" id="srel">backend · rooted &amp; race-free</div>
+          <div class="stage-art soil" id="soilart">
+            <svg id="rootsvg" viewBox="0 0 400 280" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" aria-label="A root system that grows as the backend architecture initializes">
+              <path d="M0 116 Q200 128 400 114" fill="none" stroke="#e3d9cb" stroke-width="1" opacity=".4"/>
+              <path d="M0 192 Q200 204 400 190" fill="none" stroke="#e3d9cb" stroke-width="1" opacity=".3"/>
+              <path d="M200 44 C200 28 200 14 200 0" stroke="#6f8f6c" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <path d="M199 30 C183 28 173 19 171 10 C185 10 195 18 199 30z" fill="#a8bfa4"/>
+              <path d="M201 23 C217 21 227 12 229 3 C215 3 205 11 201 23z" fill="#8fb08b"/>
+              <g id="rg"></g>
+              <ellipse id="crown" class="crown" cx="200" cy="44" rx="8.5" ry="4" fill="#8a6a50"/>
+              <g id="db" class="db"><ellipse cx="200" cy="248" rx="16" ry="5"/><ellipse cx="200" cy="242" rx="16" ry="5"/><ellipse cx="200" cy="236" rx="16" ry="5"/></g>
+              <g id="nodes"></g>
+              <g id="labels"></g>
+            </svg>
+          </div>
+          <div class="controls">
+            <button class="btn" id="grow">Initialize backend</button>
+            <label><input type="checkbox" id="slow"> Simulate unindexed range scan</label>
+          </div>
+          <div class="log" id="slog" aria-live="polite"><b>ready</b> PostgreSQL 16 GiST exclusion locks active. Pool healthy (~1ms).</div>
+        </div>
+        <div class="card">
+          <ol class="steps" id="bsteps">
+            <li><i>1</i><div>Taproot · PostgreSQL 16 &amp; GiST Schema<small>Migrations applied with tstzrange &amp; btree_gist exclusion constraints</small></div></li>
+            <li><i>2</i><div>Main Roots · Atomic Concurrency Lock<small>Storage engine intercepts overlapping intervals (SQLSTATE 23P01)</small></div></li>
+            <li><i>3</i><div>Root Crown · Typed API &amp; JWT Gate<small>Node.js 22 &amp; TypeScript REST routes, RBAC, and 409 Conflict translation</small></div></li>
+            <li><i>4</i><div>Lateral Roots · Cron Workers &amp; Tunnels<small>Cloud Scheduler jobs, email reminders &amp; Cloudflare Zero Trust routing</small></div></li>
+            <li><i>5</i><div>Root Hairs · Prometheus &amp; Graceful Drain<small>Latency histograms, conflict counters, and 10s SIGTERM pool draining</small></div></li>
+          </ol>
+        </div>
+      </div>
+    </div>
   </div>
-</div></section>
+</section>
 
-<section id="shed" style="padding-top:0"><div class="wrap">
-  <span class="eyebrow">Tools</span><h2>The toolshed</h2>
-  <div class="shed reveal">
-    <div><h3>Orchestration</h3><p>Kubernetes, Helm, Kustomize, Argo CD, Docker, Nomad</p></div>
-    <div><h3>Cloud</h3><p>AWS, GCP, Cloudflare, networking, IAM, cost control</p></div>
-    <div><h3>Automation</h3><p>Terraform, Ansible, GitHub Actions, GitLab CI, Python, Bash, Go</p></div>
-    <div><h3>Reliability</h3><p>SLOs, Prometheus, Grafana, OpenTelemetry, incident response</p></div>
-    <div><h3>Safety</h3><p>Trivy, Vault, OPA, supply-chain signing, least privilege</p></div>
+<section id="shed">
+  <div class="wrap">
+    <span class="eyebrow">Technical Capabilities</span>
+    <h2>The toolshed</h2>
+    <p class="lead">Production tools used across my deployed services—chosen for operational clarity, low overhead, and deterministic behavior.</p>
+    <div class="shed reveal">
+      <div>
+        <h3>Cloud &amp; FinOps</h3>
+        <p>GCP Cloud Run, Cloud SQL, Secret Manager, Cloud Scheduler, Cloudflare Zero Trust, budget guardrails</p>
+      </div>
+      <div>
+        <h3>Observability &amp; SRE</h3>
+        <p>Prometheus, Grafana, Gatus SLA probes, Node Exporter, Cloud Logging sinks, automated incident webhooks</p>
+      </div>
+      <div>
+        <h3>CI/CD &amp; Containers</h3>
+        <p>GitHub Actions, Workload Identity Federation, Docker &amp; Docker Compose, multi-stage builds, traffic rollbacks</p>
+      </div>
+      <div>
+        <h3>Backend &amp; Storage</h3>
+        <p>TypeScript, Node.js 22, PostgreSQL 16 (GiST &amp; range types), Express, stateless JWT, Jest integration testing</p>
+      </div>
+    </div>
   </div>
-</div></section>
+</section>
 
-<section id="seasons"><div class="wrap">
-  <span class="eyebrow">Experience</span><h2>Seasons</h2>
-  <div class="tl">
-    <article class="reveal"><time>2023 – Now</time><h3>Senior Platform Engineer · Meadowlark</h3><p>Lead a four-person platform team. Own the Kubernetes estate, CI/CD and the paved road for 120 engineers.</p></article>
-    <article class="reveal"><time>2020 – 2023</time><h3>DevOps Engineer · Fernhill</h3><p>Moved the company to infrastructure as code and introduced SLOs and progressive delivery.</p></article>
-    <article class="reveal"><time>2017 – 2020</time><h3>Systems Engineer · Brightwater</h3><p>Ran Linux fleets, wrote the first deploy scripts, and learned why boring is beautiful.</p></article>
+<section id="seasons">
+  <div class="wrap">
+    <span class="eyebrow">Engineering Philosophy</span>
+    <h2>How I tend systems</h2>
+    <div class="tl">
+      <article class="reveal">
+        <time>Pillar 01 · Cloud &amp; Cost Governance</time>
+        <h3>FinOps by Architecture, Not Afterthought</h3>
+        <p>Cloud infrastructure shouldn't leak money while idle. By pairing native Cloud Run ingress with scale-to-zero compute, right-sized Cloud SQL instances, and filtered log sinks, production stays responsive under load and costs ~$6/month at rest.</p>
+      </article>
+      <article class="reveal">
+        <time>Pillar 02 · Closed-Loop Reliability</time>
+        <h3>Alerts That Track &amp; Resolve Themselves</h3>
+        <p>Monitoring is only useful when it drives action without alert fatigue. Services bind to localhost behind Cloudflare Zero Trust tunnels while Gatus probes SLAs and automatically manages the full lifecycle of GitHub Incident issues.</p>
+      </article>
+      <article class="reveal">
+        <time>Pillar 03 · Data Integrity First</time>
+        <h3>Concurrency Enforced at the Storage Layer</h3>
+        <p>Application-level checks fail when containers scale horizontally. Pushing invariants like reservation overlap prevention into PostgreSQL GiST exclusion constraints guarantees correctness regardless of how many API replicas are running.</p>
+      </article>
+    </div>
   </div>
-</div></section>
+</section>
 
-<section id="contact"><div class="wrap">
-  <span class="eyebrow">Contact</span>
-  <h2>Let's grow something steady.</h2>
-  <p class="lead">Open to platform, SRE and DevOps work, and happy to talk about taming a noisy pipeline.</p>
-  <a class="btn" href="mailto:hello@example.com">hello@example.com</a>
-  <a class="btn ghost" href="#">GitHub</a><a class="btn ghost" href="#">LinkedIn</a>
-</div></section>
-<footer>Hand-built with plain HTML, CSS and JS · no dark mode needed 🌿</footer>
+<section id="contact">
+  <div class="wrap">
+    <span class="eyebrow">Contact</span>
+    <h2>Let's grow something steady.</h2>
+    <p class="lead">Open to DevOps, Cloud Platform, SRE, and Backend Engineering roles where reliability, clean architecture, and calm operations matter.</p>
+    <div class="contact-actions">
+      <a class="btn" href="https://github.com/samueleisen" target="_blank" rel="noopener">GitHub · @samueleisen ↗</a>
+      <a class="btn ghost" href="https://cloud.samueleisen.com/" target="_blank" rel="noopener">Live Cloud Platform ↗</a>
+      <a class="btn ghost" href="mailto:hello@samueleisen.com">hello@samueleisen.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <span>© Samuel Eisen · Built with plain HTML, CSS &amp; vanilla JS</span>
+    <span>Zero dependencies · Fast &amp; calm by design</span>
+  </div>
+</footer>
 
 <script src="script.js"></script>
 </body>
 </html>
-

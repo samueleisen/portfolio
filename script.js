@@ -130,7 +130,7 @@
   const navContactBtn = document.getElementById('nav-contact-btn');
   const modalCloseBtn = document.getElementById('modal-close-btn');
   const emailCopyContainer = document.getElementById('email-copy-container');
-  const emailAddress = 'hello@samueleisen.com';
+  const emailAddress = 'syamilhedison@gmail.com';
 
   function copyTextToClipboard(text) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
